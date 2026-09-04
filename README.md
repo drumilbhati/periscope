@@ -9,7 +9,7 @@
 ## 📚 Documentation
 
 * [Problem Statement](file:///Users/drumilbhati/Documents/Github/periscope/docs/PROBLEM_STATEMENT.md) — Motivation and core objectives.
-* [Architecture Specification](file:///Users/drumilbhati/Documents/Github/periscope/docs/ARCHITECTURE.md) — Comprehensive technical architecture (Path A: CDC + Kafka + Raft HA).
+* [Architecture Specification](file:///Users/drumilbhati/Documents/Github/periscope/docs/ARCHITECTURE.md) — Comprehensive technical architecture (PostgreSQL CDC + Apache Kafka + Raft HA).
 * [Implementation Plan & Roadmap](file:///Users/drumilbhati/Documents/Github/periscope/docs/PLAN.md) — Phased milestones, atomic task checklist, and progress tracker.
 
 ---

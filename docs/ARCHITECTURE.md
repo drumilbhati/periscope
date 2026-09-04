@@ -1,6 +1,6 @@
-# Periscope — Architecture Specification (Path A)
+# Periscope — Architecture Specification
 
-This document provides a comprehensive technical specification for the **Periscope** architecture (**Path A: PostgreSQL Change Data Capture with Apache Kafka & Raft Consensus High Availability**).
+This document provides a comprehensive technical specification for the **Periscope** architecture: **PostgreSQL Change Data Capture with Apache Kafka & Raft Consensus High Availability**.
 
 ---
 
