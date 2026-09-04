@@ -60,7 +60,7 @@ flowchart LR
 
 ---
 
-### Phase 1: Foundations & Infrastructure Setup (Milestone 1)
+### [Phase 1: Foundations & Infrastructure Setup (Milestone 1)](https://github.com/drumilbhati/periscope/milestone/1)
 
 **Goal:** Establish the project foundation, containerized infrastructure (Postgres + Kafka), and modern Java 21+ configuration.
 
@@ -82,7 +82,7 @@ flowchart LR
 
 ---
 
-### Phase 2: PostgreSQL CDC Ingestion Engine (Milestone 2)
+### [Phase 2: PostgreSQL CDC Ingestion Engine (Milestone 2)](https://github.com/drumilbhati/periscope/milestone/2)
 
 **Goal:** Connect to PostgreSQL's logical replication stream, read WAL changes, and parse row mutations into typed Java models.
 
@@ -104,7 +104,7 @@ flowchart LR
 
 ---
 
-### Phase 3: Kafka Publisher & Pipeline Integration (Milestone 3)
+### [Phase 3: Kafka Publisher & Pipeline Integration (Milestone 3)](https://github.com/drumilbhati/periscope/milestone/3)
 
 **Goal:** Transform parsed database changes into structured JSON events, partition them by primary key, and publish them to Kafka with strict delivery guarantees.
 
@@ -123,7 +123,7 @@ flowchart LR
 
 ---
 
-### Phase 4: Raft Consensus & High Availability (Milestone 4)
+### [Phase 4: Raft Consensus & High Availability (Milestone 4)](https://github.com/drumilbhati/periscope/milestone/4)
 
 **Goal:** Ensure only one Periscope node reads from Postgres at a time, with automated leader election and failover if the leader crashes.
 
@@ -145,7 +145,7 @@ flowchart LR
 
 ---
 
-### Phase 5: Consumer Client Demo & End-to-End Verification (Milestone 5)
+### [Phase 5: Consumer Client Demo & End-to-End Verification (Milestone 5)](https://github.com/drumilbhati/periscope/milestone/5)
 
 **Goal:** Validate the end-to-end system with a downstream consumer application and verify resilience under failure.
 
@@ -161,12 +161,29 @@ flowchart LR
 
 ---
 
-## Suggested Milestones Timeline
+## 📊 Issues & Progress Tracker
 
-| Milestone | Deliverable | Primary Tech / Java Concepts |
-| :--- | :--- | :--- |
-| **M1** | Build setup, Docker Compose (Postgres + Kafka), config | Maven, Docker, Records, SLF4J |
-| **M2** | Working Postgres CDC stream & parser | JDBC Logical Replication, Sealed Classes, Pattern Matching |
-| **M3** | Kafka publisher with PK ordering & LSN feedback | Kafka Producer, `CompletableFuture`, JSON mapping |
-| **M4** | Raft consensus module & automated leader failover | Concurrency, Atomics, Sockets, ScheduledExecutors |
-| **M5** | Consumer sample app & end-to-end test suite | Kafka Consumer Groups, Integration Testing |
+| Milestone | Issue | Task | Target Files | Status |
+| :--- | :---: | :--- | :--- | :---: |
+| **[Phase 1](https://github.com/drumilbhati/periscope/milestone/1)** | [#6](https://github.com/drumilbhati/periscope/issues/6) | Setup Maven `pom.xml` with Java 21+ & Core Dependencies | `pom.xml`, `.gitignore` | ⏳ Pending |
+| | [#7](https://github.com/drumilbhati/periscope/issues/7) | Add Docker Compose for PostgreSQL & Kafka | `docker-compose.yml`, `init.sql` | ⏳ Pending |
+| | [#8](https://github.com/drumilbhati/periscope/issues/8) | Implement Type-Safe Database & Kafka Configuration Records | `DatabaseConfig.java`, `KafkaConfig.java` | ⏳ Pending |
+| | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ⏳ Pending |
+| | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ⏳ Pending |
+| **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ⏳ Pending |
+| | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ⏳ Pending |
+| | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ⏳ Pending |
+| | [#14](https://github.com/drumilbhati/periscope/issues/14) | Implement `WalMessageParser` for `test_decoding` Format | `WalMessageParser.java`, test | ⏳ Pending |
+| | [#15](https://github.com/drumilbhati/periscope/issues/15) | Implement `CdcStreamConsumer` with LSN Feedback Loop | `CdcStreamConsumer.java` | ⏳ Pending |
+| **[Phase 3](https://github.com/drumilbhati/periscope/milestone/3)** | [#16](https://github.com/drumilbhati/periscope/issues/16) | Implement `EventSerializer` for JSON Schema Envelope | `EventSerializer.java`, test | ⏳ Pending |
+| | [#17](https://github.com/drumilbhati/periscope/issues/17) | Implement `KafkaChangePublisher` with Idempotent Settings | `KafkaChangePublisher.java` | ⏳ Pending |
+| | [#18](https://github.com/drumilbhati/periscope/issues/18) | Implement `TopicRouter` for Table-to-Topic & PK Partitioning | `TopicRouter.java`, test | ⏳ Pending |
+| | [#19](https://github.com/drumilbhati/periscope/issues/19) | Implement `CdcPipelineCoordinator` Linking Stream and Kafka | `CdcPipelineCoordinator.java` | ⏳ Pending |
+| **[Phase 4](https://github.com/drumilbhati/periscope/milestone/4)** | [#20](https://github.com/drumilbhati/periscope/issues/20) | Model Raft Node State and Protocol RPC Messages | `RaftState.java`, `RaftMessage.java` | ⏳ Pending |
+| | [#21](https://github.com/drumilbhati/periscope/issues/21) | Implement `RaftTransport` Socket Client and Server | `RaftTransport.java` | ⏳ Pending |
+| | [#22](https://github.com/drumilbhati/periscope/issues/22) | Implement `RaftConsensusEngine` for Leader Election | `RaftConsensusEngine.java` | ⏳ Pending |
+| | [#23](https://github.com/drumilbhati/periscope/issues/23) | Implement `LeaderElectionController` for CDC Lifecycle | `LeaderElectionController.java` | ⏳ Pending |
+| | [#24](https://github.com/drumilbhati/periscope/issues/24) | Implement Cluster Failover Simulation Test | `FailoverIntegrationTest.java` | ⏳ Pending |
+| **[Phase 5](https://github.com/drumilbhati/periscope/milestone/5)** | [#25](https://github.com/drumilbhati/periscope/issues/25) | Build Sample Kafka Consumer Client for Table Topics | `SampleConsumer.java` | ⏳ Pending |
+| | [#26](https://github.com/drumilbhati/periscope/issues/26) | Implement End-to-End Data Integrity and Ordering Test | `DataIntegrityE2ETest.java` | ⏳ Pending |
+| | [#27](https://github.com/drumilbhati/periscope/issues/27) | Write Getting Started Guide and Architecture Documentation | `docs/GETTING_STARTED.md`, `README.md` | ⏳ Pending |
