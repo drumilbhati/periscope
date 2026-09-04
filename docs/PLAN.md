@@ -64,7 +64,7 @@ flowchart LR
 
 **Goal:** Establish the project foundation, containerized infrastructure (Postgres + Kafka), and modern Java 21+ configuration.
 
-- [ ] **[#6](https://github.com/drumilbhati/periscope/issues/6) - Setup Maven pom.xml with Java 21+ and Core Dependencies**
+- [x] **[#6](https://github.com/drumilbhati/periscope/issues/6) - Setup Maven pom.xml with Java 21+ and Core Dependencies**
   - Target files: `pom.xml`, `.gitignore`
   - Configure compiler, surefire plugins, dependencies (Postgres JDBC, Kafka clients, Jackson, SLF4J, Logback, JUnit 5).
 - [ ] **[#7](https://github.com/drumilbhati/periscope/issues/7) - Add Docker Compose for PostgreSQL (Logical Replication) and Kafka (KRaft)**
@@ -165,7 +165,7 @@ flowchart LR
 
 | Milestone | Issue | Task | Target Files | Status |
 | :--- | :---: | :--- | :--- | :---: |
-| **[Phase 1](https://github.com/drumilbhati/periscope/milestone/1)** | [#6](https://github.com/drumilbhati/periscope/issues/6) | Setup Maven `pom.xml` with Java 21+ & Core Dependencies | `pom.xml`, `.gitignore` | ⏳ Pending |
+| **[Phase 1](https://github.com/drumilbhati/periscope/milestone/1)** | [#6](https://github.com/drumilbhati/periscope/issues/6) | Setup Maven `pom.xml` with Java 21+ & Core Dependencies | `pom.xml`, `.gitignore` | ✅ Completed |
 | | [#7](https://github.com/drumilbhati/periscope/issues/7) | Add Docker Compose for PostgreSQL & Kafka | `docker-compose.yml`, `init.sql` | ⏳ Pending |
 | | [#8](https://github.com/drumilbhati/periscope/issues/8) | Implement Type-Safe Database & Kafka Configuration Records | `DatabaseConfig.java`, `KafkaConfig.java` | ⏳ Pending |
 | | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ⏳ Pending |
