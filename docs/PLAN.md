@@ -67,10 +67,10 @@ flowchart LR
 - [x] **[#6](https://github.com/drumilbhati/periscope/issues/6) - Setup Maven pom.xml with Java 21+ and Core Dependencies**
   - Target files: `pom.xml`, `.gitignore`
   - Configure compiler, surefire plugins, dependencies (Postgres JDBC, Kafka clients, Jackson, SLF4J, Logback, JUnit 5).
-- [ ] **[#7](https://github.com/drumilbhati/periscope/issues/7) - Add Docker Compose for PostgreSQL (Logical Replication) and Kafka (KRaft)**
+- [x] **[#7](https://github.com/drumilbhati/periscope/issues/7) - Add Docker Compose for PostgreSQL (Logical Replication) and Kafka (KRaft)**
   - Target files: `docker-compose.yml`, `init.sql`
   - Postgres 16+ (`wal_level=logical`), Kafka in KRaft mode, schema initialization.
-- [ ] **[#8](https://github.com/drumilbhati/periscope/issues/8) - Implement Type-Safe Database and Kafka Configuration Records**
+- [x] **[#8](https://github.com/drumilbhati/periscope/issues/8) - Implement Type-Safe Database and Kafka Configuration Records**
   - Target files: `src/main/java/com/periscope/config/DatabaseConfig.java`, `src/main/java/com/periscope/config/KafkaConfig.java`
   - Compact constructor validation, invariant checks.
 - [ ] **[#9](https://github.com/drumilbhati/periscope/issues/9) - Implement PeriscopeConfig Loader with Property Parsing**
@@ -166,8 +166,8 @@ flowchart LR
 | Milestone | Issue | Task | Target Files | Status |
 | :--- | :---: | :--- | :--- | :---: |
 | **[Phase 1](https://github.com/drumilbhati/periscope/milestone/1)** | [#6](https://github.com/drumilbhati/periscope/issues/6) | Setup Maven `pom.xml` with Java 21+ & Core Dependencies | `pom.xml`, `.gitignore` | ✅ Completed |
-| | [#7](https://github.com/drumilbhati/periscope/issues/7) | Add Docker Compose for PostgreSQL & Kafka | `docker-compose.yml`, `init.sql` | ⏳ Pending |
-| | [#8](https://github.com/drumilbhati/periscope/issues/8) | Implement Type-Safe Database & Kafka Configuration Records | `DatabaseConfig.java`, `KafkaConfig.java` | ⏳ Pending |
+| | [#7](https://github.com/drumilbhati/periscope/issues/7) | Add Docker Compose for PostgreSQL & Kafka | `docker-compose.yml`, `init.sql` | ✅ Completed |
+| | [#8](https://github.com/drumilbhati/periscope/issues/8) | Implement Type-Safe Database & Kafka Configuration Records | `DatabaseConfig.java`, `KafkaConfig.java` | ✅ Completed |
 | | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ⏳ Pending |
 | | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ⏳ Pending |
 | **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ⏳ Pending |
