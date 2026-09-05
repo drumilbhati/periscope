@@ -73,7 +73,7 @@ flowchart LR
 - [x] **[#8](https://github.com/drumilbhati/periscope/issues/8) - Implement Type-Safe Database and Kafka Configuration Records**
   - Target files: `src/main/java/com/periscope/config/DatabaseConfig.java`, `src/main/java/com/periscope/config/KafkaConfig.java`
   - Compact constructor validation, invariant checks.
-- [ ] **[#9](https://github.com/drumilbhati/periscope/issues/9) - Implement PeriscopeConfig Loader with Property Parsing**
+- [x] **[#9](https://github.com/drumilbhati/periscope/issues/9) - Implement PeriscopeConfig Loader with Property Parsing**
   - Target files: `src/main/java/com/periscope/config/PeriscopeConfig.java`, `src/main/resources/application.properties`
   - Properties loading and environment variable overrides.
 - [ ] **[#10](https://github.com/drumilbhati/periscope/issues/10) - Configure SLF4J and Logback Structured Logging**
@@ -168,7 +168,7 @@ flowchart LR
 | **[Phase 1](https://github.com/drumilbhati/periscope/milestone/1)** | [#6](https://github.com/drumilbhati/periscope/issues/6) | Setup Maven `pom.xml` with Java 21+ & Core Dependencies | `pom.xml`, `.gitignore` | ✅ Completed |
 | | [#7](https://github.com/drumilbhati/periscope/issues/7) | Add Docker Compose for PostgreSQL & Kafka | `docker-compose.yml`, `init.sql` | ✅ Completed |
 | | [#8](https://github.com/drumilbhati/periscope/issues/8) | Implement Type-Safe Database & Kafka Configuration Records | `DatabaseConfig.java`, `KafkaConfig.java` | ✅ Completed |
-| | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ⏳ Pending |
+| | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ✅ Completed |
 | | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ⏳ Pending |
 | **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ⏳ Pending |
 | | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ⏳ Pending |
