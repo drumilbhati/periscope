@@ -76,7 +76,7 @@ flowchart LR
 - [x] **[#9](https://github.com/drumilbhati/periscope/issues/9) - Implement PeriscopeConfig Loader with Property Parsing**
   - Target files: `src/main/java/com/periscope/config/PeriscopeConfig.java`, `src/main/resources/application.properties`
   - Properties loading and environment variable overrides.
-- [ ] **[#10](https://github.com/drumilbhati/periscope/issues/10) - Configure SLF4J and Logback Structured Logging**
+- [x] **[#10](https://github.com/drumilbhati/periscope/issues/10) - Configure SLF4J and Logback Structured Logging**
   - Target files: `src/main/resources/logback.xml`
   - Pattern layouts, logger levels, clean console output.
 
@@ -169,7 +169,7 @@ flowchart LR
 | | [#7](https://github.com/drumilbhati/periscope/issues/7) | Add Docker Compose for PostgreSQL & Kafka | `docker-compose.yml`, `init.sql` | ✅ Completed |
 | | [#8](https://github.com/drumilbhati/periscope/issues/8) | Implement Type-Safe Database & Kafka Configuration Records | `DatabaseConfig.java`, `KafkaConfig.java` | ✅ Completed |
 | | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ✅ Completed |
-| | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ⏳ Pending |
+| | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ✅ Completed |
 | **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ⏳ Pending |
 | | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ⏳ Pending |
 | | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ⏳ Pending |
