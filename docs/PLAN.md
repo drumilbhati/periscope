@@ -89,7 +89,7 @@ flowchart LR
 - [x] **[#11](https://github.com/drumilbhati/periscope/issues/11) - Implement PostgresConnectionFactory for Replication Connections**
   - Target files: `src/main/java/com/periscope/cdc/PostgresConnectionFactory.java`, `src/test/java/com/periscope/cdc/PostgresConnectionFactoryTest.java`
   - Configure `PGProperty.REPLICATION`, connection lifecycle.
-- [ ] **[#12](https://github.com/drumilbhati/periscope/issues/12) - Implement ReplicationSlotManager for Slot & Publication Lifecycle**
+- [x] **[#12](https://github.com/drumilbhati/periscope/issues/12) - Implement ReplicationSlotManager for Slot & Publication Lifecycle**
   - Target files: `src/main/java/com/periscope/cdc/ReplicationSlotManager.java`
   - Check, create, drop replication slots and publications idempotently.
 - [ ] **[#13](https://github.com/drumilbhati/periscope/issues/13) - Model CDC ChangeEvent and OperationType using Java Records and Sealed Types**
@@ -171,7 +171,7 @@ flowchart LR
 | | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ✅ Completed |
 | | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ✅ Completed |
 | **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ✅ Completed |
-| | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ⏳ Pending |
+| | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ✅ Completed |
 | | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ⏳ Pending |
 | | [#14](https://github.com/drumilbhati/periscope/issues/14) | Implement `WalMessageParser` for `test_decoding` Format | `WalMessageParser.java`, test | ⏳ Pending |
 | | [#15](https://github.com/drumilbhati/periscope/issues/15) | Implement `CdcStreamConsumer` with LSN Feedback Loop | `CdcStreamConsumer.java` | ⏳ Pending |

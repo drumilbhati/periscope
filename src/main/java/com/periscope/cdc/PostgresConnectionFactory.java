@@ -52,6 +52,7 @@ public class PostgresConnectionFactory {
         PGProperty.PASSWORD.set(props, config.password());
         PGProperty.ASSUME_MIN_SERVER_VERSION.set(props, "10");
         PGProperty.REPLICATION.set(props, "database");
+        PGProperty.PREFER_QUERY_MODE.set(props, "simple");
         return props;
     }
 

@@ -57,6 +57,7 @@ class PostgresConnectionFactoryTest {
         assertEquals("periscope", PGProperty.PASSWORD.getOrDefault(props));
         assertEquals("10", PGProperty.ASSUME_MIN_SERVER_VERSION.getOrDefault(props));
         assertEquals("database", PGProperty.REPLICATION.getOrDefault(props));
+        assertEquals("simple", PGProperty.PREFER_QUERY_MODE.getOrDefault(props));
     }
 
     @Test
