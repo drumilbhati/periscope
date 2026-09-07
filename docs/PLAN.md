@@ -92,7 +92,7 @@ flowchart LR
 - [x] **[#12](https://github.com/drumilbhati/periscope/issues/12) - Implement ReplicationSlotManager for Slot & Publication Lifecycle**
   - Target files: `src/main/java/com/periscope/cdc/ReplicationSlotManager.java`
   - Check, create, drop replication slots and publications idempotently.
-- [ ] **[#13](https://github.com/drumilbhati/periscope/issues/13) - Model CDC ChangeEvent and OperationType using Java Records and Sealed Types**
+- [x] **[#13](https://github.com/drumilbhati/periscope/issues/13) - Model CDC ChangeEvent and OperationType using Java Records and Sealed Types**
   - Target files: `src/main/java/com/periscope/model/OperationType.java`, `src/main/java/com/periscope/model/ChangeEvent.java`
   - Immutable domain events, LSN, row before/after column maps.
 - [ ] **[#14](https://github.com/drumilbhati/periscope/issues/14) - Implement WalMessageParser for test_decoding Stream Format**
@@ -172,7 +172,7 @@ flowchart LR
 | | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ✅ Completed |
 | **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ✅ Completed |
 | | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ✅ Completed |
-| | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ⏳ Pending |
+| | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ✅ Completed |
 | | [#14](https://github.com/drumilbhati/periscope/issues/14) | Implement `WalMessageParser` for `test_decoding` Format | `WalMessageParser.java`, test | ⏳ Pending |
 | | [#15](https://github.com/drumilbhati/periscope/issues/15) | Implement `CdcStreamConsumer` with LSN Feedback Loop | `CdcStreamConsumer.java` | ⏳ Pending |
 | **[Phase 3](https://github.com/drumilbhati/periscope/milestone/3)** | [#16](https://github.com/drumilbhati/periscope/issues/16) | Implement `EventSerializer` for JSON Schema Envelope | `EventSerializer.java`, test | ⏳ Pending |
