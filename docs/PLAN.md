@@ -86,7 +86,7 @@ flowchart LR
 
 **Goal:** Connect to PostgreSQL's logical replication stream, read WAL changes, and parse row mutations into typed Java models.
 
-- [ ] **[#11](https://github.com/drumilbhati/periscope/issues/11) - Implement PostgresConnectionFactory for Replication Connections**
+- [x] **[#11](https://github.com/drumilbhati/periscope/issues/11) - Implement PostgresConnectionFactory for Replication Connections**
   - Target files: `src/main/java/com/periscope/cdc/PostgresConnectionFactory.java`, `src/test/java/com/periscope/cdc/PostgresConnectionFactoryTest.java`
   - Configure `PGProperty.REPLICATION`, connection lifecycle.
 - [ ] **[#12](https://github.com/drumilbhati/periscope/issues/12) - Implement ReplicationSlotManager for Slot & Publication Lifecycle**
@@ -170,7 +170,7 @@ flowchart LR
 | | [#8](https://github.com/drumilbhati/periscope/issues/8) | Implement Type-Safe Database & Kafka Configuration Records | `DatabaseConfig.java`, `KafkaConfig.java` | ✅ Completed |
 | | [#9](https://github.com/drumilbhati/periscope/issues/9) | Implement `PeriscopeConfig` Loader with Property Parsing | `PeriscopeConfig.java`, `application.properties` | ✅ Completed |
 | | [#10](https://github.com/drumilbhati/periscope/issues/10) | Configure SLF4J and Logback Structured Logging | `logback.xml` | ✅ Completed |
-| **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ⏳ Pending |
+| **[Phase 2](https://github.com/drumilbhati/periscope/milestone/2)** | [#11](https://github.com/drumilbhati/periscope/issues/11) | Implement `PostgresConnectionFactory` for Replication | `PostgresConnectionFactory.java` | ✅ Completed |
 | | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ⏳ Pending |
 | | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ⏳ Pending |
 | | [#14](https://github.com/drumilbhati/periscope/issues/14) | Implement `WalMessageParser` for `test_decoding` Format | `WalMessageParser.java`, test | ⏳ Pending |
