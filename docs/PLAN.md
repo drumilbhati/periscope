@@ -98,7 +98,7 @@ flowchart LR
 - [x] **[#14](https://github.com/drumilbhati/periscope/issues/14) - Implement WalMessageParser for test_decoding Stream Format**
   - Target files: `src/main/java/com/periscope/cdc/WalMessageParser.java`, `src/test/java/com/periscope/cdc/WalMessageParserTest.java`
   - Regex and string tokenization parsing WAL text to `ChangeEvent`.
-- [ ] **[#15](https://github.com/drumilbhati/periscope/issues/15) - Implement CdcStreamConsumer with LSN Feedback Loop**
+- [x] **[#15](https://github.com/drumilbhati/periscope/issues/15) - Implement CdcStreamConsumer with LSN Feedback Loop**
   - Target files: `src/main/java/com/periscope/cdc/CdcStreamConsumer.java`
   - Streaming loop with `PGReplicationStream`, background execution, `stream.setFlushedLSN()`.
 
@@ -174,7 +174,7 @@ flowchart LR
 | | [#12](https://github.com/drumilbhati/periscope/issues/12) | Implement `ReplicationSlotManager` for Slot & Publication Lifecycle | `ReplicationSlotManager.java` | ✅ Completed |
 | | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ✅ Completed |
 | | [#14](https://github.com/drumilbhati/periscope/issues/14) | Implement `WalMessageParser` for `test_decoding` Format | `WalMessageParser.java`, test | ✅ Completed |
-| | [#15](https://github.com/drumilbhati/periscope/issues/15) | Implement `CdcStreamConsumer` with LSN Feedback Loop | `CdcStreamConsumer.java` | ⏳ Pending |
+| | [#15](https://github.com/drumilbhati/periscope/issues/15) | Implement `CdcStreamConsumer` with LSN Feedback Loop | `CdcStreamConsumer.java` | ✅ Completed |
 | **[Phase 3](https://github.com/drumilbhati/periscope/milestone/3)** | [#16](https://github.com/drumilbhati/periscope/issues/16) | Implement `EventSerializer` for JSON Schema Envelope | `EventSerializer.java`, test | ⏳ Pending |
 | | [#17](https://github.com/drumilbhati/periscope/issues/17) | Implement `KafkaChangePublisher` with Idempotent Settings | `KafkaChangePublisher.java` | ⏳ Pending |
 | | [#18](https://github.com/drumilbhati/periscope/issues/18) | Implement `TopicRouter` for Table-to-Topic & PK Partitioning | `TopicRouter.java`, test | ⏳ Pending |
