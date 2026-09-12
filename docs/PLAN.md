@@ -114,7 +114,7 @@ flowchart LR
 - [x] **[#17](https://github.com/drumilbhati/periscope/issues/17) - Implement KafkaChangePublisher with Idempotent Settings**
   - Target files: `src/main/java/com/periscope/kafka/KafkaChangePublisher.java`
   - `KafkaProducer` with `acks=all`, `enable.idempotence=true`, wrapping callbacks into `CompletableFuture`.
-- [ ] **[#18](https://github.com/drumilbhati/periscope/issues/18) - Implement TopicRouter for Table-to-Topic and PK Partitioning**
+- [x] **[#18](https://github.com/drumilbhati/periscope/issues/18) - Implement TopicRouter for Table-to-Topic and PK Partitioning**
   - Target files: `src/main/java/com/periscope/kafka/TopicRouter.java`, `src/test/java/com/periscope/kafka/TopicRouterTest.java`
   - Topic name resolution (`periscope.<schema>.<table>`) and row primary key extraction.
 - [ ] **[#19](https://github.com/drumilbhati/periscope/issues/19) - Implement CdcPipelineCoordinator Linking CDC Stream and Kafka Acks**
@@ -177,7 +177,7 @@ flowchart LR
 | | [#15](https://github.com/drumilbhati/periscope/issues/15) | Implement `CdcStreamConsumer` with LSN Feedback Loop | `CdcStreamConsumer.java` | ✅ Completed |
 | **[Phase 3](https://github.com/drumilbhati/periscope/milestone/3)** | [#16](https://github.com/drumilbhati/periscope/issues/16) | Implement `EventSerializer` for JSON Schema Envelope | `EventSerializer.java`, test | ✅ Completed |
 | | [#17](https://github.com/drumilbhati/periscope/issues/17) | Implement `KafkaChangePublisher` with Idempotent Settings | `KafkaChangePublisher.java` | ✅ Completed |
-| | [#18](https://github.com/drumilbhati/periscope/issues/18) | Implement `TopicRouter` for Table-to-Topic & PK Partitioning | `TopicRouter.java`, test | ⏳ Pending |
+| | [#18](https://github.com/drumilbhati/periscope/issues/18) | Implement `TopicRouter` for Table-to-Topic & PK Partitioning | `TopicRouter.java`, test | ✅ Completed |
 | | [#19](https://github.com/drumilbhati/periscope/issues/19) | Implement `CdcPipelineCoordinator` Linking Stream and Kafka | `CdcPipelineCoordinator.java` | ⏳ Pending |
 | **[Phase 4](https://github.com/drumilbhati/periscope/milestone/4)** | [#20](https://github.com/drumilbhati/periscope/issues/20) | Model Raft Node State and Protocol RPC Messages | `RaftState.java`, `RaftMessage.java` | ⏳ Pending |
 | | [#21](https://github.com/drumilbhati/periscope/issues/21) | Implement `RaftTransport` Socket Client and Server | `RaftTransport.java` | ⏳ Pending |
