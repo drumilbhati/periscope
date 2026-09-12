@@ -108,7 +108,7 @@ flowchart LR
 
 **Goal:** Transform parsed database changes into structured JSON events, partition them by primary key, and publish them to Kafka with strict delivery guarantees.
 
-- [ ] **[#16](https://github.com/drumilbhati/periscope/issues/16) - Implement EventSerializer for JSON Schema Envelope**
+- [x] **[#16](https://github.com/drumilbhati/periscope/issues/16) - Implement EventSerializer for JSON Schema Envelope**
   - Target files: `src/main/java/com/periscope/kafka/EventSerializer.java`, `src/test/java/com/periscope/kafka/EventSerializerTest.java`
   - Jackson `ObjectMapper` serialization into standard change envelope.
 - [ ] **[#17](https://github.com/drumilbhati/periscope/issues/17) - Implement KafkaChangePublisher with Idempotent Settings**
@@ -175,7 +175,7 @@ flowchart LR
 | | [#13](https://github.com/drumilbhati/periscope/issues/13) | Model CDC `ChangeEvent` and `OperationType` using Records | `OperationType.java`, `ChangeEvent.java` | ✅ Completed |
 | | [#14](https://github.com/drumilbhati/periscope/issues/14) | Implement `WalMessageParser` for `test_decoding` Format | `WalMessageParser.java`, test | ✅ Completed |
 | | [#15](https://github.com/drumilbhati/periscope/issues/15) | Implement `CdcStreamConsumer` with LSN Feedback Loop | `CdcStreamConsumer.java` | ✅ Completed |
-| **[Phase 3](https://github.com/drumilbhati/periscope/milestone/3)** | [#16](https://github.com/drumilbhati/periscope/issues/16) | Implement `EventSerializer` for JSON Schema Envelope | `EventSerializer.java`, test | ⏳ Pending |
+| **[Phase 3](https://github.com/drumilbhati/periscope/milestone/3)** | [#16](https://github.com/drumilbhati/periscope/issues/16) | Implement `EventSerializer` for JSON Schema Envelope | `EventSerializer.java`, test | ✅ Completed |
 | | [#17](https://github.com/drumilbhati/periscope/issues/17) | Implement `KafkaChangePublisher` with Idempotent Settings | `KafkaChangePublisher.java` | ⏳ Pending |
 | | [#18](https://github.com/drumilbhati/periscope/issues/18) | Implement `TopicRouter` for Table-to-Topic & PK Partitioning | `TopicRouter.java`, test | ⏳ Pending |
 | | [#19](https://github.com/drumilbhati/periscope/issues/19) | Implement `CdcPipelineCoordinator` Linking Stream and Kafka | `CdcPipelineCoordinator.java` | ⏳ Pending |
