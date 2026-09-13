@@ -13,6 +13,7 @@ import java.net.Socket;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -83,12 +84,15 @@ class CdcStreamConsumerTest {
         slotManager.createSlotIfMissing(config.slotName(), "test_decoding");
 
         // 2. Start CDC stream consumer collecting events
+        String email = "streamtest-" + UUID.randomUUID() + "@example.com";
         List<ChangeEvent> receivedEvents = new CopyOnWriteArrayList<>();
         CountDownLatch latch = new CountDownLatch(1);
 
         consumer.start(event -> {
-            receivedEvents.add(event);
-            latch.countDown();
+            if (event.after() != null && email.equals(event.after().get("email"))) {
+                receivedEvents.add(event);
+                latch.countDown();
+            }
         });
 
         assertTrue(consumer.isRunning(), "Consumer should be running");
@@ -96,7 +100,7 @@ class CdcStreamConsumerTest {
         // 3. Execute an INSERT in Postgres on a separate connection
         try (Connection conn = connectionFactory.createConnection();
              Statement stmt = conn.createStatement()) {
-            stmt.execute("INSERT INTO customers (name, email) VALUES ('StreamTest User', 'streamtest@example.com')");
+            stmt.execute("INSERT INTO customers (name, email) VALUES ('StreamTest User', '" + email + "')");
         }
 
         // 4. Await event capture
@@ -116,6 +120,11 @@ class CdcStreamConsumerTest {
         // 6. Clean shutdown
         consumer.close();
         assertFalse(consumer.isRunning(), "Consumer should be stopped after close()");
+
+        try (Connection conn = connectionFactory.createConnection();
+             Statement stmt = conn.createStatement()) {
+            stmt.execute("DELETE FROM customers WHERE email = '" + email + "'");
+        }
     }
 
     private boolean isPostgresReachable() {

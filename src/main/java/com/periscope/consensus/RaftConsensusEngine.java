@@ -28,6 +28,12 @@ public class RaftConsensusEngine {
 	private ScheduledFuture<?> heartbeatTask;
 	private final Random random = new Random();
 
+	public interface LeadershipListener {
+		void onRoleChanged(RaftState.Role newRole);
+	}
+
+	private LeadershipListener listener;
+
 	public RaftConsensusEngine(
 		String nodeId,
 		List<String> peerAddresses,
@@ -38,6 +44,19 @@ public class RaftConsensusEngine {
 		this.transport = transport;
 		this.state = new RaftState();
 		this.state.setRole(RaftState.Role.FOLLOWER);
+	}
+
+	public void setListener(LeadershipListener listener) {
+		this.listener = listener;
+	}
+
+	private void changeRole(RaftState.Role newRole) {
+		if (this.state.getRole() != newRole) {
+			this.state.setRole(newRole);
+			if (this.listener != null) {
+				this.listener.onRoleChanged(newRole);
+			}
+		}
 	}
 
 	public void start() {
@@ -73,7 +92,7 @@ public class RaftConsensusEngine {
 	 * Called when the election timer expires.
 	 */
 	private synchronized void startElection() {
-		this.state.setRole(Role.CANDIDATE);
+		changeRole(Role.CANDIDATE);
 		this.state.setCurrentTerm(this.state.getCurrentTerm() + 1);
 		this.state.setVotedFor(this.nodeId);
 
@@ -116,12 +135,18 @@ public class RaftConsensusEngine {
 			});
 		}
 
-		// Restart the timer in case this election results in a tie
-		resetElectionTimer();
+		// A single-node cluster already has a quorum. There are no peer
+		// responses that can trigger becomeLeader() in this case.
+		if (majority == 1) {
+			becomeLeader();
+		} else {
+			// Restart the timer in case this election results in a tie.
+			resetElectionTimer();
+		}
 	}
 
 	private synchronized void becomeLeader() {
-		this.state.setRole(Role.LEADER);
+		changeRole(Role.LEADER);
 		if (electionTimeoutTask != null) {
 			electionTimeoutTask.cancel(false);
 		}
@@ -162,7 +187,7 @@ public class RaftConsensusEngine {
 	) {
 		if (message instanceof RaftMessage.AppendEntries hb) {
 			this.state.setCurrentTerm(hb.term());
-			this.state.setRole(Role.FOLLOWER);
+			changeRole(Role.FOLLOWER);
 			this.state.setLeaderId(hb.leaderId());
 			resetElectionTimer();
 			return new RaftMessage.AppendEntriesResponse(
@@ -172,7 +197,7 @@ public class RaftConsensusEngine {
 		} else if (message instanceof RaftMessage.RequestVote rv) {
 			if (rv.term() > this.state.getCurrentTerm()) {
 				this.state.setCurrentTerm(rv.term());
-				this.state.setRole(Role.FOLLOWER);
+				changeRole(Role.FOLLOWER);
 				return new RaftMessage.RequestVoteResponse(
 					this.state.getCurrentTerm(),
 					true
@@ -186,5 +211,10 @@ public class RaftConsensusEngine {
 		}
 
 		throw new IllegalArgumentException("Unknown message type");
+	}
+
+	public void close() throws Exception {
+		timer.shutdownNow();
+		transport.close();
 	}
 }

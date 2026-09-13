@@ -84,6 +84,14 @@
             <scope>test</scope>
         </dependency>
         
+        <!-- Awaitility (For async testing) -->
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        
         <!-- Mockito (Mocking framework for testing) -->
         <dependency>
             <groupId>org.mockito</groupId>

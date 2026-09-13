@@ -136,10 +136,10 @@ flowchart LR
 - [x] **[#22](https://github.com/drumilbhati/periscope/issues/22) - Implement RaftConsensusEngine for Leader Election**
   - Target files: `src/main/java/com/periscope/consensus/RaftConsensusEngine.java`
   - Randomized timers (150-300ms) with `ScheduledExecutorService`, quorum counting, role transitions.
-- [ ] **[#23](https://github.com/drumilbhati/periscope/issues/23) - Implement LeaderElectionController for CDC Pipeline Lifecycle**
+- [x] **[#23](https://github.com/drumilbhati/periscope/issues/23) - Implement LeaderElectionController for CDC Pipeline Lifecycle**
   - Target files: `src/main/java/com/periscope/consensus/LeaderElectionController.java`
   - Start CDC pipeline on LEADER; stop pipeline and release connection on FOLLOWER.
-- [ ] **[#24](https://github.com/drumilbhati/periscope/issues/24) - Implement Cluster Failover Simulation Test**
+- [x] **[#24](https://github.com/drumilbhati/periscope/issues/24) - Implement Cluster Failover Simulation Test**
   - Target files: `src/test/java/com/periscope/consensus/FailoverIntegrationTest.java`
   - Simulating 3 nodes, killing leader, asserting standby election and handover.
 
@@ -149,13 +149,13 @@ flowchart LR
 
 **Goal:** Validate the end-to-end system with a downstream consumer application and verify resilience under failure.
 
-- [ ] **[#25](https://github.com/drumilbhati/periscope/issues/25) - Build Sample Kafka Consumer Client for Table Topics**
+- [x] **[#25](https://github.com/drumilbhati/periscope/issues/25) - Build Sample Kafka Consumer Client for Table Topics**
   - Target files: `src/main/java/com/periscope/demo/SampleConsumer.java`
   - `KafkaConsumer` polling loop, group management, change envelope logging.
-- [ ] **[#26](https://github.com/drumilbhati/periscope/issues/26) - Implement End-to-End Data Integrity and Ordering Test**
+- [x] **[#26](https://github.com/drumilbhati/periscope/issues/26) - Implement End-to-End Data Integrity and Ordering Test**
   - Target files: `src/test/java/com/periscope/e2e/DataIntegrityE2ETest.java`
   - Verify sequence of INSERT -> UPDATE -> DELETE maintains strict ordering at consumer.
-- [ ] **[#27](https://github.com/drumilbhati/periscope/issues/27) - Write Getting Started Guide and Architecture Documentation**
+- [x] **[#27](https://github.com/drumilbhati/periscope/issues/27) - Write Getting Started Guide and Architecture Documentation**
   - Target files: `docs/GETTING_STARTED.md`, `README.md`
   - Developer runbook, local startup guide, architecture verification steps.
 
@@ -182,8 +182,8 @@ flowchart LR
 | **[Phase 4](https://github.com/drumilbhati/periscope/milestone/4)** | [#20](https://github.com/drumilbhati/periscope/issues/20) | Model Raft Node State and Protocol RPC Messages | `RaftState.java`, `RaftMessage.java` | ✅ Completed |
 | | [#21](https://github.com/drumilbhati/periscope/issues/21) | Implement `RaftTransport` Socket Client and Server | `RaftTransport.java` | ✅ Completed |
 | | [#22](https://github.com/drumilbhati/periscope/issues/22) | Implement `RaftConsensusEngine` for Leader Election | `RaftConsensusEngine.java` | ✅ Completed |
-| | [#23](https://github.com/drumilbhati/periscope/issues/23) | Implement `LeaderElectionController` for CDC Lifecycle | `LeaderElectionController.java` | ⏳ Pending |
-| | [#24](https://github.com/drumilbhati/periscope/issues/24) | Implement Cluster Failover Simulation Test | `FailoverIntegrationTest.java` | ⏳ Pending |
-| **[Phase 5](https://github.com/drumilbhati/periscope/milestone/5)** | [#25](https://github.com/drumilbhati/periscope/issues/25) | Build Sample Kafka Consumer Client for Table Topics | `SampleConsumer.java` | ⏳ Pending |
-| | [#26](https://github.com/drumilbhati/periscope/issues/26) | Implement End-to-End Data Integrity and Ordering Test | `DataIntegrityE2ETest.java` | ⏳ Pending |
-| | [#27](https://github.com/drumilbhati/periscope/issues/27) | Write Getting Started Guide and Architecture Documentation | `docs/GETTING_STARTED.md`, `README.md` | ⏳ Pending |
+| | [#23](https://github.com/drumilbhati/periscope/issues/23) | Implement `LeaderElectionController` for CDC Lifecycle | `LeaderElectionController.java` | ✅ Completed |
+| | [#24](https://github.com/drumilbhati/periscope/issues/24) | Implement Cluster Failover Simulation Test | `FailoverIntegrationTest.java` | ✅ Completed |
+| **[Phase 5](https://github.com/drumilbhati/periscope/milestone/5)** | [#25](https://github.com/drumilbhati/periscope/issues/25) | Build Sample Kafka Consumer Client for Table Topics | `SampleConsumer.java` | ✅ Completed |
+| | [#26](https://github.com/drumilbhati/periscope/issues/26) | Implement End-to-End Data Integrity and Ordering Test | `DataIntegrityE2ETest.java` | ✅ Completed |
+| | [#27](https://github.com/drumilbhati/periscope/issues/27) | Write Getting Started Guide and Architecture Documentation | `docs/GETTING_STARTED.md`, `README.md` | ✅ Completed |
