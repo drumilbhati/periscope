@@ -90,6 +90,9 @@ public class CdcStreamConsumer implements AutoCloseable {
     void streamLoop(Consumer<ChangeEvent> handler) throws SQLException, InterruptedException {
         while (running.get() && !Thread.currentThread().isInterrupted()) {
             try {
+                if (stream.isClosed()) {
+                    break;
+                }
                 ByteBuffer buffer = stream.readPending();
                 if (buffer == null) {
                     Thread.sleep(10);
@@ -103,7 +106,7 @@ public class CdcStreamConsumer implements AutoCloseable {
                 Thread.currentThread().interrupt();
                 break;
             } catch (SQLException e) {
-                if (!running.get()) {
+                if (!running.get() || stream.isClosed()) {
                     break;
                 }
                 log.error("Error reading from CDC replication stream: ", e);
@@ -133,12 +136,16 @@ public class CdcStreamConsumer implements AutoCloseable {
     @Override
     public synchronized void close() throws Exception {
         running.set(false);
+
+        // Close the stream before joining the worker so a blocked readPending()
+        // call is interrupted by the driver's close operation.
+        if (stream != null && !stream.isClosed()) {
+            stream.close();
+        }
+
         if (workerThread != null && workerThread.isAlive()) {
             workerThread.interrupt();
             workerThread.join(2000);
-        }
-        if (stream != null && !stream.isClosed()) {
-            stream.close();
         }
         if (pgConnection instanceof Connection conn && !conn.isClosed()) {
             conn.close();
