@@ -127,7 +127,7 @@ flowchart LR
 
 **Goal:** Ensure only one Periscope node reads from Postgres at a time, with automated leader election and failover if the leader crashes.
 
-- [ ] **[#20](https://github.com/drumilbhati/periscope/issues/20) - Model Raft Node State and Protocol RPC Messages**
+- [x] **[#20](https://github.com/drumilbhati/periscope/issues/20) - Model Raft Node State and Protocol RPC Messages**
   - Target files: `src/main/java/com/periscope/consensus/RaftState.java`, `src/main/java/com/periscope/consensus/RaftMessage.java`
   - Sealed interfaces and records for `RequestVote` and `AppendEntries` / Heartbeat.
 - [ ] **[#21](https://github.com/drumilbhati/periscope/issues/21) - Implement RaftTransport Socket Client and Server**
@@ -179,7 +179,7 @@ flowchart LR
 | | [#17](https://github.com/drumilbhati/periscope/issues/17) | Implement `KafkaChangePublisher` with Idempotent Settings | `KafkaChangePublisher.java` | ✅ Completed |
 | | [#18](https://github.com/drumilbhati/periscope/issues/18) | Implement `TopicRouter` for Table-to-Topic & PK Partitioning | `TopicRouter.java`, test | ✅ Completed |
 | | [#19](https://github.com/drumilbhati/periscope/issues/19) | Implement `CdcPipelineCoordinator` Linking Stream and Kafka | `CdcPipelineCoordinator.java` | ✅ Completed |
-| **[Phase 4](https://github.com/drumilbhati/periscope/milestone/4)** | [#20](https://github.com/drumilbhati/periscope/issues/20) | Model Raft Node State and Protocol RPC Messages | `RaftState.java`, `RaftMessage.java` | ⏳ Pending |
+| **[Phase 4](https://github.com/drumilbhati/periscope/milestone/4)** | [#20](https://github.com/drumilbhati/periscope/issues/20) | Model Raft Node State and Protocol RPC Messages | `RaftState.java`, `RaftMessage.java` | ✅ Completed |
 | | [#21](https://github.com/drumilbhati/periscope/issues/21) | Implement `RaftTransport` Socket Client and Server | `RaftTransport.java` | ⏳ Pending |
 | | [#22](https://github.com/drumilbhati/periscope/issues/22) | Implement `RaftConsensusEngine` for Leader Election | `RaftConsensusEngine.java` | ⏳ Pending |
 | | [#23](https://github.com/drumilbhati/periscope/issues/23) | Implement `LeaderElectionController` for CDC Lifecycle | `LeaderElectionController.java` | ⏳ Pending |
