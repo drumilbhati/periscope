@@ -11,9 +11,6 @@ public sealed interface RaftMessage
 		RaftMessage.AppendEntries,
 		RaftMessage.AppendEntriesResponse
 {
-	// TODO 1: Create a record 'RequestVote' that implements RaftMessage.
-	// Fields: long term, String candidateId
-	// (Used when a candidate wants to become leader)
 	/**
 	 * RequestVote
 	 */
@@ -22,9 +19,6 @@ public sealed interface RaftMessage
 		String candidateId
 	) implements RaftMessage {}
 
-	// TODO 2: Create a record 'RequestVoteResponse' that implements RaftMessage.
-	// Fields: long term, boolean voteGranted
-	// (Used to reply to a RequestVote)
 	/**
 	 * RequestVoteResponse
 	 */
@@ -33,10 +27,6 @@ public sealed interface RaftMessage
 		boolean voteGranted
 	) implements RaftMessage {}
 
-	// TODO 3: Create a record 'AppendEntries' that implements RaftMessage.
-	// Fields: long term, String leaderId
-	// (In our simplified CDC system, we don't actually replicate logs through Raft.
-	// We just use empty AppendEntries as Heartbeats to maintain leadership.)
 	/**
 	 * AppendEntries
 	 */
@@ -45,8 +35,6 @@ public sealed interface RaftMessage
 		String leaderId
 	) implements RaftMessage {}
 
-	// TODO 4: Create a record 'AppendEntriesResponse' that implements RaftMessage.
-	// Fields: long term, boolean success
 	/**
 	 * AppendEntriesResponse
 	 */
