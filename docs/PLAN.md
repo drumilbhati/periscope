@@ -130,10 +130,10 @@ flowchart LR
 - [x] **[#20](https://github.com/drumilbhati/periscope/issues/20) - Model Raft Node State and Protocol RPC Messages**
   - Target files: `src/main/java/com/periscope/consensus/RaftState.java`, `src/main/java/com/periscope/consensus/RaftMessage.java`
   - Sealed interfaces and records for `RequestVote` and `AppendEntries` / Heartbeat.
-- [ ] **[#21](https://github.com/drumilbhati/periscope/issues/21) - Implement RaftTransport Socket Client and Server**
+- [x] **[#21](https://github.com/drumilbhati/periscope/issues/21) - Implement RaftTransport Socket Client and Server**
   - Target files: `src/main/java/com/periscope/consensus/RaftTransport.java`
   - Sockets with Java Virtual Threads (`Thread.ofVirtual()`) for message exchange.
-- [ ] **[#22](https://github.com/drumilbhati/periscope/issues/22) - Implement RaftConsensusEngine for Leader Election**
+- [x] **[#22](https://github.com/drumilbhati/periscope/issues/22) - Implement RaftConsensusEngine for Leader Election**
   - Target files: `src/main/java/com/periscope/consensus/RaftConsensusEngine.java`
   - Randomized timers (150-300ms) with `ScheduledExecutorService`, quorum counting, role transitions.
 - [ ] **[#23](https://github.com/drumilbhati/periscope/issues/23) - Implement LeaderElectionController for CDC Pipeline Lifecycle**
@@ -180,8 +180,8 @@ flowchart LR
 | | [#18](https://github.com/drumilbhati/periscope/issues/18) | Implement `TopicRouter` for Table-to-Topic & PK Partitioning | `TopicRouter.java`, test | ✅ Completed |
 | | [#19](https://github.com/drumilbhati/periscope/issues/19) | Implement `CdcPipelineCoordinator` Linking Stream and Kafka | `CdcPipelineCoordinator.java` | ✅ Completed |
 | **[Phase 4](https://github.com/drumilbhati/periscope/milestone/4)** | [#20](https://github.com/drumilbhati/periscope/issues/20) | Model Raft Node State and Protocol RPC Messages | `RaftState.java`, `RaftMessage.java` | ✅ Completed |
-| | [#21](https://github.com/drumilbhati/periscope/issues/21) | Implement `RaftTransport` Socket Client and Server | `RaftTransport.java` | ⏳ Pending |
-| | [#22](https://github.com/drumilbhati/periscope/issues/22) | Implement `RaftConsensusEngine` for Leader Election | `RaftConsensusEngine.java` | ⏳ Pending |
+| | [#21](https://github.com/drumilbhati/periscope/issues/21) | Implement `RaftTransport` Socket Client and Server | `RaftTransport.java` | ✅ Completed |
+| | [#22](https://github.com/drumilbhati/periscope/issues/22) | Implement `RaftConsensusEngine` for Leader Election | `RaftConsensusEngine.java` | ✅ Completed |
 | | [#23](https://github.com/drumilbhati/periscope/issues/23) | Implement `LeaderElectionController` for CDC Lifecycle | `LeaderElectionController.java` | ⏳ Pending |
 | | [#24](https://github.com/drumilbhati/periscope/issues/24) | Implement Cluster Failover Simulation Test | `FailoverIntegrationTest.java` | ⏳ Pending |
 | **[Phase 5](https://github.com/drumilbhati/periscope/milestone/5)** | [#25](https://github.com/drumilbhati/periscope/issues/25) | Build Sample Kafka Consumer Client for Table Topics | `SampleConsumer.java` | ⏳ Pending |
