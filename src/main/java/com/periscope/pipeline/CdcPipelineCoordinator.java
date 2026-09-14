@@ -6,6 +6,7 @@ import com.periscope.kafka.KafkaChangePublisher;
 import com.periscope.kafka.TopicRouter;
 import java.sql.SQLException;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class CdcPipelineCoordinator implements AutoCloseable {
 
@@ -13,6 +14,7 @@ public class CdcPipelineCoordinator implements AutoCloseable {
 	private final WalMessageParser parser;
 	private final TopicRouter router;
 	private final KafkaChangePublisher publisher;
+	private final Consumer<com.periscope.model.ChangeEvent> eventListener;
 
 	public CdcPipelineCoordinator(
 		CdcStreamConsumer consumer,
@@ -20,10 +22,25 @@ public class CdcPipelineCoordinator implements AutoCloseable {
 		TopicRouter router,
 		KafkaChangePublisher publisher
 	) {
+		this(consumer, parser, router, publisher, null);
+	}
+
+	/**
+	 * Creates a pipeline and optionally invokes a listener after Kafka has
+	 * acknowledged an event and PostgreSQL has received the LSN feedback.
+	 */
+	public CdcPipelineCoordinator(
+		CdcStreamConsumer consumer,
+		WalMessageParser parser,
+		TopicRouter router,
+		KafkaChangePublisher publisher,
+		Consumer<com.periscope.model.ChangeEvent> eventListener
+	) {
 		this.consumer = consumer;
 		this.parser = parser;
 		this.router = router;
 		this.publisher = publisher;
+		this.eventListener = eventListener;
 	}
 
 	public void start() throws java.sql.SQLException {
@@ -39,6 +56,9 @@ public class CdcPipelineCoordinator implements AutoCloseable {
 			future.thenAccept(v -> {
 				try {
 					consumer.acknowledgeLsn(event.lsn());
+					if (eventListener != null) {
+						eventListener.accept(event);
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

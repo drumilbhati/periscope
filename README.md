@@ -85,6 +85,29 @@ Using the primary key as the Kafka key keeps all changes for the same entity on 
 - **Runnable sample consumer** for observing table events in real time.
 - **End-to-end verification** across PostgreSQL, logical replication, Kafka, and consumers.
 
+## Embed Periscope in a Java application
+
+Periscope can also be used as a library. The public `com.periscope.api.PeriscopeClient`
+facade owns the replication stream and Kafka publisher, while your application receives
+typed immutable `ChangeEvent` values:
+
+```java
+try (PeriscopeClient client = PeriscopeClient.builder()
+        .database(new DatabaseConfig("localhost", 5432, "app", "postgres", "secret",
+                "periscope_slot", "periscope_pub"))
+        .kafka(new KafkaConfig("localhost:9092", "all", 3, "periscope"))
+        .onChange(event -> downstream.handle(event))
+        .build()) {
+    client.start();
+    // The callback runs after Kafka acknowledgement and PostgreSQL LSN feedback.
+}
+```
+
+For applications that provision PostgreSQL publication and replication slots separately,
+use `.createInfrastructure(false)`. The low-level packages remain available for advanced
+custom wiring, but consumers should prefer the `com.periscope.api` package as the stable
+integration boundary.
+
 ## Project structure
 
 ```text
