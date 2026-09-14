@@ -27,6 +27,7 @@ public class RaftConsensusEngine {
 	private ScheduledFuture<?> electionTimeoutTask;
 	private ScheduledFuture<?> heartbeatTask;
 	private final Random random = new Random();
+	private boolean started;
 
 	public interface LeadershipListener {
 		void onRoleChanged(RaftState.Role newRole);
@@ -53,13 +54,21 @@ public class RaftConsensusEngine {
 	private void changeRole(RaftState.Role newRole) {
 		if (this.state.getRole() != newRole) {
 			this.state.setRole(newRole);
+			if (newRole != Role.LEADER && heartbeatTask != null) {
+				heartbeatTask.cancel(false);
+				heartbeatTask = null;
+			}
 			if (this.listener != null) {
 				this.listener.onRoleChanged(newRole);
 			}
 		}
 	}
 
-	public void start() {
+	public synchronized void start() {
+		if (started) {
+			return;
+		}
+		started = true;
 		// Start listening for incoming messages from peers
 		try {
 			transport.startListening(this::handleIncomingMessage);
@@ -92,9 +101,15 @@ public class RaftConsensusEngine {
 	 * Called when the election timer expires.
 	 */
 	private synchronized void startElection() {
+		if (!started || state.getRole() == Role.LEADER) {
+			return;
+		}
+
 		changeRole(Role.CANDIDATE);
 		this.state.setCurrentTerm(this.state.getCurrentTerm() + 1);
 		this.state.setVotedFor(this.nodeId);
+		this.state.setLeaderId(null);
+		long electionTerm = this.state.getCurrentTerm();
 
 		log.info(
 			"Node {} starting election for term {}",
@@ -108,7 +123,7 @@ public class RaftConsensusEngine {
 
 		// Ask all peers for a vote
 		RaftMessage.RequestVote request = new RaftMessage.RequestVote(
-			state.getCurrentTerm(),
+			electionTerm,
 			nodeId
 		);
 
@@ -117,11 +132,31 @@ public class RaftConsensusEngine {
 				try {
 					RaftMessage.RequestVoteResponse response =
 						transport.sendRequestVote(peer, request);
-					// If votesReceived hits majority, call becomeLeader()!
+
+					synchronized (RaftConsensusEngine.this) {
+						if (response.term() > state.getCurrentTerm()) {
+							state.setCurrentTerm(response.term());
+							state.setVotedFor(null);
+							changeRole(Role.FOLLOWER);
+							resetElectionTimer();
+							return;
+						}
+						if (state.getRole() != Role.CANDIDATE
+								|| state.getCurrentTerm() != electionTerm) {
+							return;
+						}
+					}
+
+					// If votesReceived hits majority, call becomeLeader().
 					if (response.voteGranted()) {
 						int currentVotes = votesReceived.incrementAndGet();
 						if (currentVotes == majority) {
-							becomeLeader();
+							synchronized (RaftConsensusEngine.this) {
+								if (state.getRole() == Role.CANDIDATE
+										&& state.getCurrentTerm() == electionTerm) {
+									becomeLeader();
+								}
+							}
 						}
 					}
 				} catch (Exception e) {
@@ -146,7 +181,11 @@ public class RaftConsensusEngine {
 	}
 
 	private synchronized void becomeLeader() {
+		if (state.getRole() != Role.CANDIDATE) {
+			return;
+		}
 		changeRole(Role.LEADER);
+		state.setLeaderId(nodeId);
 		if (electionTimeoutTask != null) {
 			electionTimeoutTask.cancel(false);
 		}
@@ -186,27 +225,47 @@ public class RaftConsensusEngine {
 		RaftMessage message
 	) {
 		if (message instanceof RaftMessage.AppendEntries hb) {
-			this.state.setCurrentTerm(hb.term());
+			if (hb.term() < state.getCurrentTerm()) {
+				return new RaftMessage.AppendEntriesResponse(
+					state.getCurrentTerm(),
+					false
+				);
+			}
+			if (hb.term() > state.getCurrentTerm()) {
+				state.setCurrentTerm(hb.term());
+				state.setVotedFor(null);
+			}
 			changeRole(Role.FOLLOWER);
 			this.state.setLeaderId(hb.leaderId());
 			resetElectionTimer();
 			return new RaftMessage.AppendEntriesResponse(
 				state.getCurrentTerm(),
-				true
+					true
 			);
 		} else if (message instanceof RaftMessage.RequestVote rv) {
-			if (rv.term() > this.state.getCurrentTerm()) {
-				this.state.setCurrentTerm(rv.term());
-				changeRole(Role.FOLLOWER);
+			if (rv.term() < this.state.getCurrentTerm()) {
 				return new RaftMessage.RequestVoteResponse(
-					this.state.getCurrentTerm(),
-					true
+					state.getCurrentTerm(),
+					false
 				);
 			}
-			// Otherwise, deny the vote (return false).
+			if (rv.term() > this.state.getCurrentTerm()) {
+				this.state.setCurrentTerm(rv.term());
+				this.state.setVotedFor(null);
+				changeRole(Role.FOLLOWER);
+			}
+
+			boolean canVote = state.getVotedFor() == null
+					|| state.getVotedFor().equals(rv.candidateId());
+			if (canVote) {
+				state.setVotedFor(rv.candidateId());
+				state.setLeaderId(null);
+				changeRole(Role.FOLLOWER);
+				resetElectionTimer();
+			}
 			return new RaftMessage.RequestVoteResponse(
 				state.getCurrentTerm(),
-				false
+				canVote
 			);
 		}
 
@@ -214,6 +273,7 @@ public class RaftConsensusEngine {
 	}
 
 	public void close() throws Exception {
+		started = false;
 		timer.shutdownNow();
 		transport.close();
 	}

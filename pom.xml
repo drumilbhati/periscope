@@ -21,6 +21,14 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>drumilbhati</id>
+            <name>Drumil Bhati</name>
+            <url>https://github.com/drumilbhati</url>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:git:git://github.com/drumilbhati/periscope.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/drumilbhati/periscope.git</developerConnection>
