@@ -87,26 +87,56 @@ Using the primary key as the Kafka key keeps all changes for the same entity on 
 
 ## Embed Periscope in a Java application
 
-Periscope can also be used as a library. The public `com.periscope.api.PeriscopeClient`
-facade owns the replication stream and Kafka publisher, while your application receives
-typed immutable `ChangeEvent` values:
+Clients can use Periscope with one dependency and a small configuration block. The public
+`com.periscope.api.PeriscopeClient` facade owns the replication stream and Kafka publisher,
+while the application receives typed immutable `ChangeEvent` values.
+
+Add the Maven Central dependency:
+
+```xml
+<dependency>
+    <groupId>io.github.drumilbhati</groupId>
+    <artifactId>periscope</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+Then create and start the client:
 
 ```java
-try (PeriscopeClient client = PeriscopeClient.builder()
-        .database(new DatabaseConfig("localhost", 5432, "app", "postgres", "secret",
-                "periscope_slot", "periscope_pub"))
-        .kafka(new KafkaConfig("localhost:9092", "all", 3, "periscope"))
-        .onChange(event -> downstream.handle(event))
-        .build()) {
-    client.start();
-    // The callback runs after Kafka acknowledgement and PostgreSQL LSN feedback.
+import com.periscope.api.PeriscopeClient;
+import com.periscope.config.DatabaseConfig;
+import com.periscope.config.KafkaConfig;
+
+public class Application {
+    public static void main(String[] args) throws Exception {
+        try (PeriscopeClient client = PeriscopeClient.builder()
+                .database(new DatabaseConfig(
+                        "localhost", 5432, "my_database", "postgres",
+                        System.getenv("DB_PASSWORD"),
+                        "periscope_slot", "periscope_pub"))
+                .kafka(new KafkaConfig("localhost:9092", "all", 3, "periscope"))
+                .onChange(event -> {
+                    System.out.println(event.operation() + " "
+                            + event.schemaName() + "." + event.tableName());
+                })
+                .build()) {
+            client.start();
+            Thread.currentThread().join();
+        }
+    }
 }
 ```
 
-For applications that provision PostgreSQL publication and replication slots separately,
-use `.createInfrastructure(false)`. The low-level packages remain available for advanced
-custom wiring, but consumers should prefer the `com.periscope.api` package as the stable
-integration boundary.
+The client requires Java 21+, a reachable PostgreSQL instance with logical replication
+enabled, and a reachable Kafka broker. By default, Periscope creates the PostgreSQL
+publication and replication slot when they do not exist. If the application provisions
+those separately, use `.createInfrastructure(false)`.
+
+Periscope reads changes from PostgreSQL, publishes them to Kafka, invokes `onChange` after
+Kafka acknowledges the event, and cleans up its resources when the client closes. In
+production, load passwords and other credentials from environment variables or a secrets
+manager rather than hardcoding them.
 
 ## Project structure
 
