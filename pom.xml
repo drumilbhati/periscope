@@ -4,7 +4,7 @@
 
     <groupId>io.github.drumilbhati</groupId>
     <artifactId>periscope</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Periscope</name>
     <description>High-Availability PostgreSQL Change Data Capture &amp; Event Streaming Pipeline</description>
