@@ -7,7 +7,7 @@
 
     <groupId>io.github.drumilbhati</groupId>
     <artifactId>periscope</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Periscope</name>
     <description>High-Availability PostgreSQL Change Data Capture &amp; Event Streaming Pipeline</description>
@@ -33,7 +33,7 @@
         <connection>scm:git:git://github.com/drumilbhati/periscope.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/drumilbhati/periscope.git</developerConnection>
         <url>https://github.com/drumilbhati/periscope</url>
-        <tag>v0.1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
