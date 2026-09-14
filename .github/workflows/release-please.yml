@@ -28,7 +28,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: maven
-          package-name: io.github.drumilbhati:periscope
 
   publish:
     name: Publish released version
